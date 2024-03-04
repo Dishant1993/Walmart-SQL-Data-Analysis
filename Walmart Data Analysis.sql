@@ -173,4 +173,132 @@ from sales
 group by product_line
 order by avg_rating desc
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Sales
+-- --------Number of sales made in each time of the day per week
+
+select time_of_day,
+count(*) as total_sales
+from sales
+where day_name = "Monday"
+group by time_of_day
+order by total_sales desc;
   
+-- Which of the customer types bring more revenue?
+
+select
+customer_type,
+sum(total) as total_rev
+from sales 
+group by customer_type
+order by total_rev desc;
+
+-- Which city has largest VAT 
+
+select 
+city,
+avg(vat) as vat
+from sales
+group by city
+order by vat desc;
+
+-- which customer type pays the most in vat?
+
+select 
+customer_type,
+avg(vat) as vat
+from sales
+group by customer_type
+order by vat desc;
+
+-------------- Customers -----------------------------------
+-- how many unique customer types does the data have 
+
+select distinct customer_type
+from sales;
+
+-- how many unique payments method we have
+
+select distinct payment_method
+from sales;
+
+-- what is the most common customer type
+
+select distinct customer_type
+from sales;
+
+-- which customer types buys the most?
+
+select  customer_type,
+count(*) as cust_cnt
+from sales
+group by customer_type;
+
+-- what is the gender of most customers
+select gender,
+count(*) as gender_count
+from sales
+group by gender
+
+
+-- what is the gender distribution for each branch
+select gender,
+count(*) as gender_count
+from sales
+where branch = "C"
+group by gender
+order by gender_count
+
+select gender,
+count(*) as gender_count
+from sales
+where branch = "B"
+group by gender
+order by gender_count
+
+select gender,
+count(*) as gender_count
+from sales
+where branch = "A"
+group by gender
+order by gender_count
+
+-- which time of the day customer give most rating?
+
+Select time_of_day,
+avg(rating) as avg_rating
+from sales
+group by time_of_day
+order by avg_rating
+
+
+-- which time of day do customer gives most ratings per branch
+Select time_of_day,
+avg(rating) as avg_rating
+from sales
+where branch = 'C'
+group by time_of_day
+order by avg_rating desc
+
+Select time_of_day,
+avg(rating) as avg_rating
+from sales
+where branch = 'A'
+group by time_of_day
+order by avg_rating
+
+-- which day of the week has the best avg ratings?
+
+select day_name,
+avg(rating) as avg_rating
+from sales
+group by day_name
+order by avg_rating
+
+-- which day of the week has the best avg ratings per branch?  
+select day_name,
+avg(rating) as avg_rating
+from sales
+where branch ='A'
+group by day_name
+order by avg_rating
