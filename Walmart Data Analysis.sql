@@ -1,4 +1,4 @@
-create database if not exists WALMARTsales
+create database if not exists WALMART sales
 
 create table if not exists sales(
 	invoice_id varchar(30) not null primary key,
